@@ -3,7 +3,6 @@
 const form = document.querySelector('.feedback-form');
 const FEEDBACK_KEY = "feedback-form-state";
 const feedbackFromStorage = localStorage.getItem(FEEDBACK_KEY);
-console.log(feedbackFromStorage);
 
 if (feedbackFromStorage) { 
     setDataFromLocalStorage(JSON.parse(feedbackFromStorage), form);
