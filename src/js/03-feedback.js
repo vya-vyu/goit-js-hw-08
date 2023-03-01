@@ -19,16 +19,20 @@ function createSubmit(event) {
 
     const { email, message } = event.currentTarget.elements;
   
-    const objSubmit = {
-        email: email.value,
-        message:message.value
-    }
+    // const objSubmit = {
+    //     email: email.value,
+    //     message:message.value
+    // }
+    // console.log(email)
+    objFeedbackStorage[email.name] = email.value;
+    objFeedbackStorage[message.name] = message.value;
 
-    console.log(objSubmit);
+    console.log(objFeedbackStorage);
     localStorage.clear();
     email.value = '';
     message.value = '';
-    
+    objFeedbackStorage[email.name] = email.value;
+    objFeedbackStorage[message.name] = message.value;
     
 }
 
