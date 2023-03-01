@@ -16,7 +16,7 @@ form.addEventListener('submit',createSubmit);
 
 function createSubmit(event) { 
     event.preventDefault();
-    
+
     const { email, message } = event.currentTarget.elements;
   
     const objSubmit = {
@@ -25,20 +25,36 @@ function createSubmit(event) {
     }
 
     console.log(objSubmit);
-
+    localStorage.clear();
     email.value = '';
     message.value = '';
-    localStorage.clear();
+    
     
 }
 
 function createFeedbackStorage(event) { 
-    objFeedbackStorage[event.target.name]=event.target.value
+    
+    objFeedbackStorage[event.target.name] = event.target.value; 
     localStorage.setItem(FEEDBACK_KEY, JSON.stringify(objFeedbackStorage));
 }
 
-function setDataFromLocalStorage({email,message },parent) { 
-    parent.elements.email.value = email;
-    parent.elements.message.value = message;
+
+function setDataFromLocalStorage(obj, parent) {   
+
+    if (obj.email) {
+        parent.elements.email.value=obj.email;
+        objFeedbackStorage.email = obj.email;
+        localStorage.setItem(FEEDBACK_KEY, JSON.stringify(objFeedbackStorage));
+    } else { 
+        parent.elements.email.value = '';
+    }
+
+    if (obj.message) {
+        parent.elements.message.value = obj.message;
+        objFeedbackStorage.message = obj.message;
+        localStorage.setItem(FEEDBACK_KEY, JSON.stringify(objFeedbackStorage));
+    } else { 
+        parent.elements.message.value = '';
+    }
 }
 
